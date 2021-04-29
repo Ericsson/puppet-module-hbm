@@ -1,3 +1,5 @@
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', '..', '..'))
+
 require 'puppet/provider/hbm'
 
 Puppet::Type.type(:hbm).provide(:collection) do
