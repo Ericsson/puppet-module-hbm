@@ -1,12 +1,12 @@
 {
-  "name": "kassisol-hbm",
+  "name": "kodguru-hbm",
   "version": "0.2.0",
   "author": "juliengk",
   "summary": "Puppet module to manage HBM through hashes in Hiera",
   "license": "Apache-2.0",
-  "source": "https://github.com/kassisol/puppet-module-hbm.git",
-  "project_page": "https://github.com/kassisol/puppet-module-hbm",
-  "issues_url": "https://github.com/kassisol/puppet-module-hbm/issues",
+  "source": "https://github.com/kodguru/puppet-module-hbm.git",
+  "project_page": "https://github.com/kodguru/puppet-module-hbm",
+  "issues_url": "https://github.com/kodguru/puppet-module-hbm/issues",
   "requirements": [
     {
       "name": "pe",
