@@ -1,7 +1,7 @@
 # docker_version.rb
 
 Facter.add('docker_version') do
-  confine :kernel => 'Linux'
+  confine kernel: 'Linux'
 
   setcode do
     docker_bin = '/usr/bin/docker'

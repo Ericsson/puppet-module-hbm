@@ -1,7 +1,7 @@
 # hbm_version.rb
 
 Facter.add('hbm_version') do
-  confine :kernel => 'Linux'
+  confine kernel: 'Linux'
 
   setcode do
     hbm_bin = '/usr/sbin/hbm'
