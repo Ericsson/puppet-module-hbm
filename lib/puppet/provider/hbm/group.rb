@@ -5,7 +5,7 @@ require 'puppet/provider/hbm'
 Puppet::Type.type(:hbm).provide(:group) do
   include Puppet::Provider::Hbm
 
-  commands :hbm => '/usr/sbin/hbm'
+  commands hbm: '/usr/sbin/hbm'
 
   def exists?
     findkey(resource[:provider], resource[:name])

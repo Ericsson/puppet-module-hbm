@@ -5,21 +5,21 @@ require 'puppet/provider/hbm'
 Puppet::Type.type(:hbm).provide(:user) do
   include Puppet::Provider::Hbm
 
-  defaultfor :kernel => :Linux
+  defaultfor kernel: :Linux
 
   has_feature :members
 
-  commands :hbm => '/usr/sbin/hbm'
+  commands hbm: '/usr/sbin/hbm'
 
   def exists?
-    res_exists()
+    res_exists
   end
 
   def create
-    res_create()
+    res_create
   end
 
   def destroy
-    res_destroy()
+    res_destroy
   end
 end
