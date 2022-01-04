@@ -84,7 +84,7 @@ Puppet::Type.type(:hbm).provide(:resource) do
     'service_update',
     'task_list',
     'task_inspect',
-  ]
+  ].freeze
 
   CONFIG_LIST = [
     'container_create_privileged',
@@ -95,12 +95,12 @@ Puppet::Type.type(:hbm).provide(:resource) do
     'container_create_uts_host',
     'container_create_user_root',
     'image_create_official',
-  ]
+  ].freeze
 
-  commands :hbm => '/usr/sbin/hbm'
+  commands hbm: '/usr/sbin/hbm'
 
   def exists?
-    res_exists()
+    res_exists
   end
 
   def create
@@ -116,10 +116,10 @@ Puppet::Type.type(:hbm).provide(:resource) do
       end
     end
 
-    res_create()
+    res_create
   end
 
   def destroy
-    res_destroy()
+    res_destroy
   end
 end
