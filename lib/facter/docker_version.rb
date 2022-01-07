@@ -1,16 +1,8 @@
-# docker_version.rb
-
-Facter.add('docker_version') do
-  confine kernel: 'Linux'
-
+Facter.add(:docker_version) do
   setcode do
-    docker_bin = '/usr/bin/docker'
-    version = 'none'
-
-    if File.file?(docker_bin)
-      version = `#{docker_bin} version -f '{{.Client.Version}}' 2> /dev/null`.strip
+    if Facter::Util::Resolution.which('docker')
+      docker_version = Facter::Core::Execution.execute('docker version -f {{.Client.Version}} 2> /dev/null')
+      docker_version.match(%r{^([\d\.]+)}).to_a[1]
     end
-
-    version
   end
 end

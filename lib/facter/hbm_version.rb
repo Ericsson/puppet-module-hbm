@@ -1,16 +1,8 @@
-# hbm_version.rb
-
-Facter.add('hbm_version') do
-  confine kernel: 'Linux'
-
+Facter.add(:hbm_version) do
   setcode do
-    hbm_bin = '/usr/sbin/hbm'
-    version = 'none'
-
-    if File.file?(hbm_bin)
-      version = `#{hbm_bin} version | grep -E "^HBM|^Version" | awk '{ print $2 }' 2> /dev/null`.strip
+    if Facter::Util::Resolution.which('hbm')
+      hbm_version = Facter::Core::Execution.execute("hbm version | grep -E '^HBM|^Version' | awk '{ print $2 }' 2> /dev/null")
+      hbm_version.match(%r{^([\d\.]+)}).to_a[1]
     end
-
-    version
   end
 end
