@@ -1,0 +1,21 @@
+---
+# only needed for unit tests of hiera_hash() functionality
+hbm::collections:
+  'collection_from_hiera_fqdn':
+    ensure: 'present'
+
+hbm::configs:
+  'config_from_hiera_fqdn':
+    ensure: 'present'
+
+hbm::policies:
+  'policy_from_hiera_fqdn':
+    ensure: 'present'
+
+hbm::resources:
+  'resource_from_hiera_fqdn':
+    ensure: 'present'
+
+hbm::users:
+  'user_from_hiera_fqdn':
+    ensure: 'present'

@@ -151,6 +151,107 @@ describe 'hbm' do
       end
     end
 
+    describe "on #{os} with data from hiera from multiple levels" do
+      let(:facts) do
+        os_facts.merge(
+          {
+            fqdn: 'test.example.local',
+            test: 'hiera_merge',
+          },
+        )
+      end
+
+      context 'with collections_hiera_merge set to false' do
+        let(:params) { { collections_hiera_merge: false } }
+
+        it { is_expected.to have_hbm__manage__collection_resource_count(1) }
+        it { is_expected.to contain_hbm__manage__collection('collection_from_hiera_fqdn') }
+      end
+
+      context 'with configs_hiera_merge set to false' do
+        let(:params) { { configs_hiera_merge: false } }
+
+        it { is_expected.to have_hbm__manage__config_resource_count(1) }
+        it { is_expected.to contain_hbm__manage__config('config_from_hiera_fqdn') }
+      end
+
+      context 'with policies_hiera_merge set to false' do
+        let(:params) { { policies_hiera_merge: false } }
+
+        it { is_expected.to have_hbm__manage__policy_resource_count(1) }
+        it { is_expected.to contain_hbm__manage__policy('policy_from_hiera_fqdn') }
+      end
+
+      context 'with resources_hiera_merge set to false' do
+        let(:params) { { resources_hiera_merge: false } }
+
+        it { is_expected.to have_hbm__manage__resource_resource_count(1) }
+        it { is_expected.to contain_hbm__manage__resource('resource_from_hiera_fqdn') }
+      end
+
+      context 'with users_hiera_merge set to false' do
+        let(:params) { { users_hiera_merge: false } }
+
+        it { is_expected.to have_hbm__manage__user_resource_count(1) }
+        it { is_expected.to contain_hbm__manage__user('user_from_hiera_fqdn') }
+      end
+
+      context 'with collections_hiera_merge set to true' do
+        let(:params) { { collections_hiera_merge: true } }
+
+        it { is_expected.to have_hbm__manage__collection_resource_count(2) }
+        it { is_expected.to contain_hbm__manage__collection('collection_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm__manage__collection('collection_from_hiera_test') }
+        # only needed to reach 100% resource coverage
+        it { is_expected.to contain_hbm('collection_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm('collection_from_hiera_test') }
+      end
+
+      context 'with configs_hiera_merge set to true' do
+        let(:params) { { configs_hiera_merge: true } }
+
+        it { is_expected.to have_hbm__manage__config_resource_count(2) }
+        it { is_expected.to contain_hbm__manage__config('config_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm__manage__config('config_from_hiera_test') }
+        # only needed to reach 100% resource coverage
+        it { is_expected.to contain_hbm('config_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm('config_from_hiera_test') }
+      end
+
+      context 'with policies_hiera_merge set to true' do
+        let(:params) { { policies_hiera_merge: true } }
+
+        it { is_expected.to have_hbm__manage__policy_resource_count(2) }
+        it { is_expected.to contain_hbm__manage__policy('policy_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm__manage__policy('policy_from_hiera_test') }
+        # only needed to reach 100% resource coverage
+        it { is_expected.to contain_hbm('policy_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm('policy_from_hiera_test') }
+      end
+
+      context 'with resources_hiera_merge set to true' do
+        let(:params) { { resources_hiera_merge: true } }
+
+        it { is_expected.to have_hbm__manage__resource_resource_count(2) }
+        it { is_expected.to contain_hbm__manage__resource('resource_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm__manage__resource('resource_from_hiera_test') }
+        # only needed to reach 100% resource coverage
+        it { is_expected.to contain_hbm('resource_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm('resource_from_hiera_test') }
+      end
+
+      context 'with users_hiera_merge set to true' do
+        let(:params) { { users_hiera_merge: true } }
+
+        it { is_expected.to have_hbm__manage__user_resource_count(2) }
+        it { is_expected.to contain_hbm__manage__user('user_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm__manage__user('user_from_hiera_test') }
+        # only needed to reach 100% resource coverage
+        it { is_expected.to contain_hbm('user_from_hiera_fqdn') }
+        it { is_expected.to contain_hbm('user_from_hiera_test') }
+      end
+    end
+
     context "on #{os} with unsupported version of docker" do
       let(:facts) do
         os_facts.merge(
