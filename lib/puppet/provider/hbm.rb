@@ -8,10 +8,10 @@ module Puppet::Provider::Hbm
     result = `#{command(:hbm)} #{provider} find #{name}`.strip
 
     if result == 'true'
-      return true
+      true
+    else
+      false
     end
-
-    false
   end
 
   def getmembers(provider, res, members)
