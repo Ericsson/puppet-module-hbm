@@ -115,7 +115,13 @@ class hbm (
       $collections_real = $collections
     }
     validate_hash($collections_real)
-    create_resources('hbm::manage::collection', $collections_real)
+#    create_resources('hbm::manage::collection', $collections_real)
+
+    $collections_real.each |$key, $value| {
+      hbm::manage::collection { $key:
+        * => $value,
+      }
+    }
   }
 
   if $configs != undef {
@@ -155,7 +161,13 @@ class hbm (
       $resources_real = $resources
     }
     validate_hash($resources_real)
-    create_resources('hbm::manage::resource', $resources_real)
+#    create_resources('hbm::manage::resource', $resources_real)
+
+    $resources_real.each |$key, $value| {
+      hbm::manage::resource { $key:
+        * => $value,
+      }
+    }
   }
 
   if $users != undef {
