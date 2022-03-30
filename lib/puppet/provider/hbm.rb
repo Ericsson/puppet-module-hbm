@@ -7,10 +7,7 @@ module Puppet::Provider::Hbm
   def findkey(provider, name)
     result = `#{command(:hbm)} #{provider} find #{name}`.strip
 
-    if result == 'true'
-      return true
-    end
-
+    return true if result == 'true'
     false
   end
 
