@@ -100,7 +100,8 @@ Puppet::Type.type(:hbm).provide(:resource) do
   commands :hbm => '/usr/sbin/hbm'
 
   def exists?
-    res_exists()
+    result = res_exists()
+    return result
   end
 
   def create

@@ -5,7 +5,6 @@ require 'puppet'
 module Puppet::Provider::Hbm
   def findkey(provider, name)
     result = `#{command(:hbm)} #{provider} find #{name}`.strip
-
     if result == 'true'
       return true
     end
@@ -16,7 +15,7 @@ module Puppet::Provider::Hbm
   def getmembers(provider, res, members)
     result = Hash['add' => Array.new, 'remove' => Array.new]
 
-    members_re = /\s+([a-z0-9\,]+)$/
+    members_re = /\s+([a-z0-9\,\_]+)$/
     em = `#{command(:hbm)} #{provider} ls | awk '/^#{res}/' | sed 's/, /,/g'`.strip
     emembers = ''
 
@@ -85,7 +84,6 @@ module Puppet::Provider::Hbm
     if resource[:ensure] == :present
       if result
         members = getmembers(resource[:provider], resource[:name], resource[:members])
-
         if members['add'].size > 0
           return false
         end

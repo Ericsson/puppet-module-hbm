@@ -8,7 +8,8 @@ Puppet::Type.type(:hbm).provide(:config) do
   commands :hbm => '/usr/sbin/hbm'
 
   def exists?
-    conf_exists()
+    result = conf_exists()
+    return result
   end
 
   def create
