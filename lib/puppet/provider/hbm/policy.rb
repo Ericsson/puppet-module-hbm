@@ -11,7 +11,8 @@ Puppet::Type.type(:hbm).provide(:policy) do
   commands :hbm => '/usr/sbin/hbm'
 
   def exists?
-    findkey(resource[:provider], resource[:name])
+    result = findkey(resource[:provider], resource[:name])
+    return result
   end
 
   def create
