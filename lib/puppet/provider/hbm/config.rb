@@ -5,10 +5,10 @@ require 'puppet/provider/hbm'
 Puppet::Type.type(:hbm).provide(:config) do
   include Puppet::Provider::Hbm
 
-  commands :hbm => '/usr/sbin/hbm'
+  commands hbm: '/usr/sbin/hbm'
 
   def exists?
-    conf_exists()
+    conf_exists
   end
 
   def create

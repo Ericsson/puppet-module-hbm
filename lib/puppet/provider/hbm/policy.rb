@@ -8,7 +8,7 @@ Puppet::Type.type(:hbm).provide(:policy) do
   has_feature :collection
   has_feature :group
 
-  commands :hbm => '/usr/sbin/hbm'
+  commands hbm: '/usr/sbin/hbm'
 
   def exists?
     findkey(resource[:provider], resource[:name])
