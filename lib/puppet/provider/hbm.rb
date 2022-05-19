@@ -14,7 +14,7 @@ module Puppet::Provider::Hbm
   def getmembers(provider, res, members)
     result = Hash['add' => [], 'remove' => [] ]
 
-    members_re = %r{\s+([a-z0-9\,]+)$}
+    members_re = %r{\s+([a-z0-9\,\_]+)$}
     em = `#{command(:hbm)} #{provider} ls | awk '/^#{res}/' | sed 's/, /,/g'`.strip
     emembers = ''
 
