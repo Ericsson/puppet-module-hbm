@@ -30,8 +30,8 @@ module Puppet::Provider::Hbm
       end
 
       if resource[:ensure].to_s == 'present'
-        if emembers.!empty?
-          if members.!empty?
+        if !emembers.empty?
+          if !members.empty?
             members.each do |member|
               unless emembers.include? member
                 result['add'].push(member)
@@ -48,12 +48,12 @@ module Puppet::Provider::Hbm
               result['remove'].push(member)
             end
           end
-        elsif members.!empty?
+        elsif !members.empty?
           members.each do |member|
             result['add'].push(member)
           end
         end
-      elsif emembers.!empty?
+      elsif !emembers.empty?
         emembers.each do |member|
           result['remove'].push(member)
         end
@@ -80,10 +80,10 @@ module Puppet::Provider::Hbm
       if result
         members = getmembers(resource[:provider], resource[:name], resource[:members])
 
-        if members['add'].!empty?
+        if !members['add'].empty?
           return false
         end
-        if members['remove'].!empty?
+        if !members['remove'].empty?
           return false
         end
       end
@@ -106,7 +106,7 @@ module Puppet::Provider::Hbm
         if options.is_a?(String)
           options = options.split
         end
-        if options.!empty?
+        if !options.empty?
           options.each do |option|
             c.push('--option')
             c.push(option)
@@ -122,12 +122,12 @@ module Puppet::Provider::Hbm
     unless resource[:provider].to_s == 'config' # rubocop:disable Style/GuardClause # FIXME: unsure what rubocop prefers
       members = getmembers(resource[:provider], resource[:name], resource[:members])
 
-      if members['add'].!empty?
+      if !members['add'].empty?
         members['add'].each do |member|
           execute([command(:hbm), resource[:provider], 'member', '--add', member, resource[:name]])
         end
       end
-      if members['remove'].!empty?
+      if !members['remove'].empty?
         members['remove'].each do |member|
           execute([command(:hbm), resource[:provider], 'member', '--remove', member, resource[:name]])
         end
@@ -138,7 +138,7 @@ module Puppet::Provider::Hbm
   def res_destroy
     members = getmembers(resource[:provider], resource[:name], resource[:members])
 
-    if members['remove'].!empty?
+    if !members['remove'].empty?
       members['remove'].each do |member|
         execute([command(:hbm), resource[:provider], 'member', '--remove', member, resource[:name]])
       end
