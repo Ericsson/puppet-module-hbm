@@ -42,7 +42,7 @@ describe 'hbm::manage::policy' do
       let(:params) { { ensure: 'invalid' } }
 
       it 'fail' do
-        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{hbm::manage::policy::testing::ensure is invalid and does not match the regex.})
+        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a match for Enum})
       end
     end
 
@@ -51,7 +51,7 @@ describe 'hbm::manage::policy' do
         let(:params) { { collection: param } }
 
         it 'fail' do
-          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{is not a string})
+          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a String value})
         end
       end
     end
@@ -61,7 +61,7 @@ describe 'hbm::manage::policy' do
         let(:params) { { group: param } }
 
         it 'fail' do
-          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{is not a string})
+          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a String value})
         end
       end
     end

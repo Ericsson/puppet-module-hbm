@@ -28,7 +28,7 @@ describe 'hbm::manage::collection' do
       let(:params) { { ensure: 'invalid' } }
 
       it 'fail' do
-        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{hbm::manage::collection::testing::ensure is invalid and does not match the regex.})
+        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a match for Enum})
       end
     end
   end

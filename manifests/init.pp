@@ -2,29 +2,76 @@
 #
 # Module to manage HBM
 #
+# @param manage_package
+#   If package hbm should be managed.
+#
+# @param manage_service
+#   If service hbm should be managed.
+#
+# @param service_enable
+#   If service hbm should be enabled.
+#
+# @param service_ensure
+#   Ensure of service hbm.
+#
+# @param collections
+#   Hash to be passed to hbm::manage::collection.
+#
+# @param configs
+#   Hash to be passed to hbm::manage::config.
+#
+# @param groups
+#   Hash to be passed to hbm::manage::group.
+#
+# @param policies
+#   Hash to be passed to hbm::manage::policy.
+#
+# @param resources
+#   Hash to be passed to hbm::manage::resource.
+#
+# @param users
+#   Hash to be passed to hbm::manage::user.
+#
+# @param collections_hiera_merge
+#   If the module should merge `$collections` from different levels in hiera.
+#
+# @param configs_hiera_merge
+#   If the module should merge `$configs` from different levels in hiera.
+#
+# @param groups_hiera_merge
+#   If the module should merge `$groups` from different levels in hiera.
+#
+# @param policies_hiera_merge
+#   If the module should merge `$policies` from different levels in hiera.
+#
+# @param resources_hiera_merge
+#   If the module should merge `$resources` from different levels in hiera.
+#
+# @param users_hiera_merge
+#   If the module should merge `$users` from different levels in hiera.
+#
 class hbm (
-  $manage_package          = false,
-  $manage_service          = true,
-  $service_enable          = true,
-  $service_ensure          = 'running',
-  $collections             = undef,
-  $configs                 = undef,
-  $groups                  = undef,
-  $policies                = undef,
-  $resources               = undef,
-  $users                   = undef,
-  $collections_hiera_merge = false,
-  $configs_hiera_merge     = false,
-  $groups_hiera_merge      = false,
-  $policies_hiera_merge    = false,
-  $resources_hiera_merge   = false,
-  $users_hiera_merge       = false,
+  Boolean                 $manage_package          = false,
+  Boolean                 $manage_service          = true,
+  Boolean                 $service_enable          = true,
+  Stdlib::Ensure::Service $service_ensure          = 'running',
+  Optional[Hash]          $collections             = undef,
+  Optional[Hash]          $configs                 = undef,
+  Optional[Hash]          $groups                  = undef,
+  Optional[Hash]          $policies                = undef,
+  Optional[Hash]          $resources               = undef,
+  Optional[Hash]          $users                   = undef,
+  Boolean                 $collections_hiera_merge = false,
+  Boolean                 $configs_hiera_merge     = false,
+  Boolean                 $groups_hiera_merge      = false,
+  Boolean                 $policies_hiera_merge    = false,
+  Boolean                 $resources_hiera_merge   = false,
+  Boolean                 $users_hiera_merge       = false,
 ) {
-
   $dockerversion = '1.12.0'
 
-  if versioncmp($::docker_version, $dockerversion) < 0 {
-      fail("HBM requires Docker Engine version >=${dockerversion}. Your version is ${::docker_version}.")
+  if versioncmp($facts['docker_version'], $dockerversion) < 0 {
+    fail("HBM requires Docker Engine version >=${dockerversion}. Your version is ${facts['docker_version']}.")
   }
 
   if is_string($manage_package) {
@@ -48,8 +95,7 @@ class hbm (
   }
   validate_bool($service_enable_real)
 
-  validate_re($service_ensure, [ '^running$', '^stopped$' ],
-    'hbm::service_ensure is invalid and does not match the regex.')
+  validate_re($service_ensure, ['^running$', '^stopped$'], 'hbm::service_ensure is invalid and does not match the regex.')
 
   if is_string($collections_hiera_merge) {
     $collections_hiera_merge_real = str2bool($collections_hiera_merge)

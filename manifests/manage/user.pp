@@ -1,15 +1,13 @@
-# == Define: hbm::manage::user
+# @param ensure
+#   TODO: Add documentation
+#
+# @param members
+#   TODO: Add documentation
 #
 define hbm::manage::user (
-  $ensure  = 'present',
-  $members = [],
+  Enum['present', 'absent'] $ensure = 'present',
+  Array $members                    = [],
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::user::${name}::ensure is invalid and does not match the regex.")
-
-  validate_array($members)
-
   hbm { $name:
     ensure   => $ensure,
     provider => 'user',

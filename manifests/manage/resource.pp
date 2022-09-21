@@ -1,21 +1,25 @@
-# == Define: hbm::manage::resource
+# @param ensure
+#   TODO: Add documentation
+#
+# @param type
+#   TODO: Add documentation
+#
+# @param value
+#   TODO: Add documentation
+#
+# @param options
+#   TODO: Add documentation
+#
+# @param members
+#   TODO: Add documentation
 #
 define hbm::manage::resource (
-  $ensure  = 'present',
-  $type    = undef,
-  $value   = undef,
-  $options = [],
-  $members = [],
+  Enum['present', 'absent'] $ensure = 'present',
+  Optional[String[1]] $type         = undef,
+  Optional[String[1]] $value        = undef,
+  Array $options                    = [],
+  Array $members                    = [],
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::resource::${name}::ensure is invalid and does not match the regex.")
-
-  validate_string($type)
-  validate_string($value)
-  validate_array($options)
-  validate_array($members)
-
   hbm { $name:
     ensure   => $ensure,
     provider => 'resource',

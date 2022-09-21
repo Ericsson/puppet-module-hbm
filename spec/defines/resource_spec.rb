@@ -56,7 +56,7 @@ describe 'hbm::manage::resource' do
       let(:params) { { ensure: 'invalid' } }
 
       it 'fail' do
-        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{hbm::manage::resource::testing::ensure is invalid and does not match the regex.})
+        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a match for Enum})
       end
     end
 
@@ -65,7 +65,7 @@ describe 'hbm::manage::resource' do
         let(:params) { { type: param } }
 
         it 'fail' do
-          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{is not a string})
+          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a value of type Undef or String})
         end
       end
     end
@@ -75,7 +75,7 @@ describe 'hbm::manage::resource' do
         let(:params) { { value: param } }
 
         it 'fail' do
-          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{is not a string})
+          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects a value of type Undef or String})
         end
       end
     end
@@ -85,7 +85,7 @@ describe 'hbm::manage::resource' do
         let(:params) { { options: param } }
 
         it 'fail' do
-          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{is not an Array})
+          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects an Array value})
         end
       end
     end
@@ -95,7 +95,7 @@ describe 'hbm::manage::resource' do
         let(:params) { { members: param } }
 
         it 'fail' do
-          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{is not an Array})
+          expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{expects an Array value})
         end
       end
     end

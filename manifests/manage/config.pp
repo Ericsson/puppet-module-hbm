@@ -1,12 +1,9 @@
-# == Define: hbm::manage::config
+# @param ensure
+#   TODO: Add documentation
 #
 define hbm::manage::config (
-  $ensure  = 'present',
+  Enum['present', 'absent'] $ensure  = 'present',
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::config::${name}::ensure is invalid and does not match the regex.")
-
   hbm { $name:
     ensure   => $ensure,
     provider => 'config',
