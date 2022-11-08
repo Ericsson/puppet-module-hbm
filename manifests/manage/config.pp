@@ -1,5 +1,5 @@
 # @param ensure
-#   TODO: Add documentation
+#   Ensure a config of $name exists or not.
 #
 define hbm::manage::config (
   Enum['present', 'absent'] $ensure  = 'present',

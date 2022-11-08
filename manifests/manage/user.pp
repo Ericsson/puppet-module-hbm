@@ -1,8 +1,8 @@
 # @param ensure
-#   TODO: Add documentation
+#   Ensure a user of $name exists or not.
 #
 # @param members
-#   TODO: Add documentation
+#   Collection names where resource will be applied to.
 #
 define hbm::manage::user (
   Enum['present', 'absent'] $ensure = 'present',

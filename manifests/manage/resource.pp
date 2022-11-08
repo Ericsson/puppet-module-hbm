@@ -1,17 +1,17 @@
 # @param ensure
-#   TODO: Add documentation
+#   Ensure a resource of $name exists or not.
 #
 # @param type
-#   TODO: Add documentation
+#   Resource value.
 #
 # @param value
-#   TODO: Add documentation
+#   Resource value.
 #
 # @param options
-#   TODO: Add documentation
+#   Any valid options for the specific resource value.
 #
 # @param members
-#   TODO: Add documentation
+#   Collection names where resource will be applied to.
 #
 define hbm::manage::resource (
   Enum['present', 'absent'] $ensure = 'present',

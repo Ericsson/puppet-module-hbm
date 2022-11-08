@@ -1,5 +1,5 @@
 # @param ensure
-#   TODO: Add documentation
+#   Ensure a collection of $name exists or not.
 #
 define hbm::manage::collection (
   Enum['present', 'absent'] $ensure = 'present',

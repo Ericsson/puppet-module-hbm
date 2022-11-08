@@ -1,11 +1,11 @@
 # @param ensure
-#   TODO: Add documentation
+#   Ensure a policy of $name exists or not.
 #
 # @param collection
-#   TODO: Add documentation
+#   To which collection this policy applies to.
 #
 # @param group
-#   TODO: Add documentation
+#   To which group this policy is applied.
 #
 define hbm::manage::policy (
   Enum['present', 'absent'] $ensure = 'present',

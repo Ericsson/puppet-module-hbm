@@ -1,5 +1,5 @@
 # @param ensure
-#   TODO: Add documentation
+#   Ensure a group of $name exists or not.
 #
 define hbm::manage::group (
   Enum['present', 'absent'] $ensure = 'present',
