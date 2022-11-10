@@ -1,15 +1,13 @@
-# == Define: hbm::manage::user
+# @param ensure
+#   Ensure a user of $name exists or not.
+#
+# @param members
+#   Collection names where resource will be applied to.
 #
 define hbm::manage::user (
-  $ensure  = 'present',
-  $members = [],
+  Enum['present', 'absent'] $ensure = 'present',
+  Array $members                    = [],
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::user::${name}::ensure is invalid and does not match the regex.")
-
-  validate_array($members)
-
   hbm { $name:
     ensure   => $ensure,
     provider => 'user',

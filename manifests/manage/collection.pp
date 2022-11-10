@@ -1,12 +1,9 @@
-# == Define: hbm::manage::collection
+# @param ensure
+#   Ensure a collection of $name exists or not.
 #
 define hbm::manage::collection (
-  $ensure = 'present',
+  Enum['present', 'absent'] $ensure = 'present',
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::collection::${name}::ensure is invalid and does not match the regex.")
-
   hbm { $name:
     ensure   => $ensure,
     provider => 'collection',

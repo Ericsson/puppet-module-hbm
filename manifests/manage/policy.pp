@@ -1,17 +1,17 @@
-# == Define: hbm::manage::policy
+# @param ensure
+#   Ensure a policy of $name exists or not.
+#
+# @param collection
+#   To which collection this policy applies to.
+#
+# @param group
+#   To which group this policy is applied.
 #
 define hbm::manage::policy (
-  $ensure     = 'present',
-  $collection = 'MANDATORY',
-  $group      = 'MANDATORY',
+  Enum['present', 'absent'] $ensure = 'present',
+  String[1] $collection             = 'MANDATORY',
+  String[1] $group                  = 'MANDATORY',
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::policy::${name}::ensure is invalid and does not match the regex.")
-
-  validate_string($collection)
-  validate_string($group)
-
   hbm { $name:
     ensure     => $ensure,
     provider   => 'policy',

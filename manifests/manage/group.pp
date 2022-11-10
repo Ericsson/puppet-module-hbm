@@ -1,12 +1,9 @@
-# == Define: hbm::manage::group
+# @param ensure
+#   Ensure a group of $name exists or not.
 #
 define hbm::manage::group (
-  $ensure = 'present',
+  Enum['present', 'absent'] $ensure = 'present',
 ) {
-
-  validate_re($ensure, [ '^present$', '^absent$' ],
-    "hbm::manage::group::${name}::ensure is invalid and does not match the regex.")
-
   hbm { $name:
     ensure   => $ensure,
     provider => 'group',
