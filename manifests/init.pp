@@ -32,24 +32,6 @@
 # @param users
 #   Hash to be passed to hbm::manage::user.
 #
-# @param collections_hiera_merge
-#   If the module should merge `$collections` from different levels in hiera.
-#
-# @param configs_hiera_merge
-#   If the module should merge `$configs` from different levels in hiera.
-#
-# @param groups_hiera_merge
-#   If the module should merge `$groups` from different levels in hiera.
-#
-# @param policies_hiera_merge
-#   If the module should merge `$policies` from different levels in hiera.
-#
-# @param resources_hiera_merge
-#   If the module should merge `$resources` from different levels in hiera.
-#
-# @param users_hiera_merge
-#   If the module should merge `$users` from different levels in hiera.
-#
 class hbm (
   Boolean                 $manage_package          = false,
   Boolean                 $manage_service          = true,
@@ -61,12 +43,6 @@ class hbm (
   Optional[Hash]          $policies                = undef,
   Optional[Hash]          $resources               = undef,
   Optional[Hash]          $users                   = undef,
-  Boolean                 $collections_hiera_merge = false,
-  Boolean                 $configs_hiera_merge     = false,
-  Boolean                 $groups_hiera_merge      = false,
-  Boolean                 $policies_hiera_merge    = false,
-  Boolean                 $resources_hiera_merge   = false,
-  Boolean                 $users_hiera_merge       = false,
 ) {
   $dockerversion = '1.12.0'
 
@@ -90,57 +66,27 @@ class hbm (
   }
 
   if $collections != undef {
-    if $collections_hiera_merge == true {
-      $collections_real = hiera_hash('hbm::collections')
-    } else {
-      $collections_real = $collections
-    }
-    create_resources('hbm::manage::collection', $collections_real)
+    create_resources('hbm::manage::collection', $collections)
   }
 
   if $configs != undef {
-    if $configs_hiera_merge == true {
-      $configs_real = hiera_hash('hbm::configs')
-    } else {
-      $configs_real = $configs
-    }
-    create_resources('hbm::manage::config', $configs_real)
+    create_resources('hbm::manage::config', $configs)
   }
 
   if $groups != undef {
-    if $groups_hiera_merge == true {
-      $groups_real = hiera_hash('hbm::groups')
-    } else {
-      $groups_real = $groups
-    }
-    create_resources('hbm::manage::group', $groups_real)
+    create_resources('hbm::manage::group', $groups)
   }
 
   if $policies != undef {
-    if $policies_hiera_merge == true {
-      $policies_real = hiera_hash('hbm::policies')
-    } else {
-      $policies_real = $policies
-    }
-    create_resources('hbm::manage::policy', $policies_real)
+    create_resources('hbm::manage::policy', $policies)
   }
 
   if $resources != undef {
-    if $resources_hiera_merge == true {
-      $resources_real = hiera_hash('hbm::resources')
-    } else {
-      $resources_real = $resources
-    }
-    create_resources('hbm::manage::resource', $resources_real)
+    create_resources('hbm::manage::resource', $resources)
   }
 
   if $users != undef {
-    if $users_hiera_merge == true {
-      $users_real = hiera_hash('hbm::users')
-    } else {
-      $users_real = $users
-    }
-    create_resources('hbm::manage::user', $users_real)
+    create_resources('hbm::manage::user', $users)
   }
 
   if $manage_package and $manage_service {
