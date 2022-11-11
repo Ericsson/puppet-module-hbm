@@ -8,9 +8,9 @@
 #   To which group this policy is applied.
 #
 define hbm::manage::policy (
-  Enum['present', 'absent'] $ensure = 'present',
-  String[1] $collection             = 'MANDATORY',
-  String[1] $group                  = 'MANDATORY',
+  String[1]                 $collection,
+  String[1]                 $group,
+  Enum['present', 'absent'] $ensure     = 'present',
 ) {
   hbm { $name:
     ensure     => $ensure,
