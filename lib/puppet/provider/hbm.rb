@@ -127,11 +127,11 @@ module Puppet::Provider::Hbm
           execute([command(:hbm), resource[:provider], 'member', '--add', member, resource[:name]])
         end
       end
-      unless members['remove'].empty?
-        members['remove'].each do |member|
-          execute([command(:hbm), resource[:provider], 'member', '--remove', member, resource[:name]])
-        end
+      return if members['remove'].empty?
+      members['remove'].each do |member|
+        execute([command(:hbm), resource[:provider], 'member', '--remove', member, resource[:name]])
       end
+
     end
   end
 
