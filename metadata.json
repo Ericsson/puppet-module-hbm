@@ -1,6 +1,6 @@
 {
   "name": "kodguru-hbm",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "juliengk",
   "summary": "Puppet module to manage HBM through hashes in Hiera",
   "license": "Apache-2.0",
