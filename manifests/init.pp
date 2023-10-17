@@ -44,12 +44,6 @@ class hbm (
   Optional[Hash]          $resources               = undef,
   Optional[Hash]          $users                   = undef,
 ) {
-  $dockerversion = '1.12.0'
-
-  if versioncmp($facts['docker_version'], $dockerversion) < 0 {
-    fail("HBM requires Docker Engine version >=${dockerversion}. Your version is ${facts['docker_version']}.")
-  }
-
   if $manage_package {
     package { 'package_hbm':
       ensure => installed,
