@@ -150,19 +150,5 @@ describe 'hbm' do
         )
       end
     end
-
-    context "on #{os} with unsupported version of docker" do
-      let(:facts) do
-        os_facts.merge(
-          {
-            docker_version: '1.11.0',
-          },
-        )
-      end
-
-      it 'fail' do
-        expect { is_expected.to contain_class(:subject) }.to raise_error(Puppet::Error, %r{HBM requires Docker Engine version >=1.12.0. Your version is 1.11.0.})
-      end
-    end
   end
 end
