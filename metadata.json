@@ -1,12 +1,12 @@
 {
-  "name": "kodguru-hbm",
+  "name": "ericsson-hbm",
   "version": "0.4.2",
-  "author": "juliengk",
+  "author": "ericsson",
   "summary": "Puppet module to manage HBM through hashes in Hiera",
   "license": "Apache-2.0",
-  "source": "https://github.com/kodguru/puppet-module-hbm.git",
-  "project_page": "https://github.com/kodguru/puppet-module-hbm",
-  "issues_url": "https://github.com/kodguru/puppet-module-hbm/issues",
+  "source": "https://github.com/ericsson/puppet-module-hbm.git",
+  "project_page": "https://github.com/ericsson/puppet-module-hbm",
+  "issues_url": "https://github.com/ericsson/puppet-module-hbm/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
