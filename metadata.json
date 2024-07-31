@@ -1,6 +1,6 @@
 {
   "name": "ericsson-hbm",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "author": "ericsson",
   "summary": "Puppet module to manage HBM through hashes in Hiera",
   "license": "Apache-2.0",
